@@ -1,20 +1,20 @@
 name: Create a comment on new issues
 
 on:
-  #this will be run whenever we open an issue
+  # This will be run whenever we open an issue
   issues:
     types: [opened]
 
 jobs:
   comment-with-action:
-    #didn't know I needed this permission, found while troubleshooting
+    # Didn't know I needed this permission, found while troubleshooting
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
-    #need issue ID, so we need the github project conext
-      - name: "dumb github context"
-        #this syntax tells github to evaluate inside the brackets
-        #jq is a JSON processing tool
+      # Need issue ID, so we need the GitHub project context
+      - name: "Dump GitHub context"
+        # This syntax tells GitHub to evaluate inside the brackets
+        # jq is a JSON processing tool
         run: echo '${{ toJSON(github.event) }}' | jq
         shell: bash
       - name: Create comment
@@ -32,15 +32,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create comment with API
-      run:
-        #github cli has syntax for POST api
-        gh api -X POST \
-          http://api.github.com/repo/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
-          -f body='
-          Comment but from API call not action
-          '
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ORGANIZATION: ${{ github.event.organization.login }}
-        REPOSITORY: ${{ github.event.repository.name }}
-        ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          # GitHub CLI has syntax for POST API
+          gh api -X POST \
+            https://api.github.com/repos/${{ github.event.repository.owner.login }}/${{ github.event.repository.name }}/issues/${{ github.event.issue.number }}/comments \
+            -f body='
+            Comment but from API call not action
+            '
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
