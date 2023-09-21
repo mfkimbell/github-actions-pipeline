@@ -1,0 +1,32 @@
+name: Hello world workflow
+#when an event happens
+on:
+  #push being an event777777
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  #workflow_dispatch creates a button to run the workflow without making changes
+  workflow_dispatch:
+
+#jobs are a set of steps, which can be console commands or actions
+jobs:
+#title of job
+  hello:
+    runs-on: ubuntu-latest
+    #steps are a set of tasks, they can be console commands or actions
+    steps:
+      - uses: actions/checkout@v2
+      #a named step with shell commands
+      - name: hello world
+        run: echo "Hello world"
+        shell: bash
+  goodbye:
+    runs-on: ubuntu-latest
+    steps:
+      - name: goodbye world
+        run: echo "Goodbye world"
+        shell: bash
+
