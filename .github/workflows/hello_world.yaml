@@ -1,7 +1,7 @@
 name: Hello world workflow
 #when an event happens
 on:
-  #push being an event777777
+  #push being an event
   push:
     branches:
       - main
@@ -15,9 +15,11 @@ on:
 jobs:
 #title of job
   hello:
+    #this is a virtual machine hosted by github, but it can be self-hosted
     runs-on: ubuntu-latest
     #steps are a set of tasks, they can be console commands or actions
     steps:
+      #checkout clones our repository into the runner to be ran
       - uses: actions/checkout@v2
       #a named step with shell commands
       - name: hello world

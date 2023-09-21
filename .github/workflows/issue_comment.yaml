@@ -1,0 +1,17 @@
+name: Create a comment on new issues
+
+on:
+  #this will be run whenever we open an issue
+  issues:
+    types: [opened]
+
+jobs:
+  comment-with-action:
+    runs-on: ubuntu-latest
+    steps:
+    #need issue ID, so we need the github project conext
+      - name: "dumb github context"
+        #this syntax tells github to evaluate inside the brackets
+        #jq is a JSON processing tool
+        run: echo '${{ toJSON(github.event) }}' | jq
+        shell: bash
