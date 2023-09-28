@@ -1,0 +1,27 @@
+name: Test Project
+on:
+  push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      #it does not run on repository, its no server, it's a folder
+      #that github's server/runner can access it
+      - name: Get code
+        #action is a custom application that performs repeated tasks
+        #as opposed to a commands
+        uses: actions/checkout@v3
+      #ubuntu-latests has node16 installed by default, so we don't have to
+      #however, I'm going to install version 18 to show how this works
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+         # maybe need "cd ReactApp", (| lets you run multiple commands)
+        run: |
+          npm ci
+      - name: Run tests
+        run: npm test
+          
+        
