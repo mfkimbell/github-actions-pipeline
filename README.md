@@ -9,6 +9,7 @@ Run `npm install` in the webapp folder, then `npm run dev`
 * `React` For rendering jsx elements and creating UI
 * `Npm` Package management and frontend server management
 * `Vite` Unit testing and running the React server (as opposed to using "Create React App")
+* `GithubActions` Automation and CI/CD Pipeline management
 
 
 Basic workflow for auto-generating comments as a reaction to comments and github api usage:
