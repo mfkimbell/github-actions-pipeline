@@ -28,6 +28,7 @@ jobs:
         run: npm test
   #every job gets its own runner
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get code
