@@ -1,4 +1,4 @@
-name: Test Project
+name: Deploy Project
 on:
   push
 jobs:
@@ -19,12 +19,35 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-         # maybe need "cd ReactApp", (| lets you run multiple commands)
+         #starts in base directory 
         working-directory: ./ReactApp
         run:
           npm ci
       - name: Run tests
         working-directory: ./ReactApp
         run: npm test
+  #every job gets its own runner
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        working-directory: ./ReactApp
+        run:
+          npm ci
+      - name: Build project
+        working-directory: ./ReactApp
+        run: npm run build
+      - name: Deploy
+        working-directory: ./ReactApp
+        run: echo "Deploying ..."
+
+
+
           
         
