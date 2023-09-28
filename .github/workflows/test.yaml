@@ -11,6 +11,8 @@ jobs:
         #action is a custom application that performs repeated tasks
         #as opposed to a commands
         uses: actions/checkout@v3
+      - name: Change Working Directory
+        run: cd ReactApp
       #ubuntu-latests has node16 installed by default, so we don't have to
       #however, I'm going to install version 18 to show how this works
       - name: Install NodeJS
@@ -19,7 +21,7 @@ jobs:
           node-version: 18
       - name: Install dependencies
          # maybe need "cd ReactApp", (| lets you run multiple commands)
-        run: |
+        run:
           npm ci
       - name: Run tests
         run: npm test
