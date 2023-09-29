@@ -13,7 +13,7 @@ Run `npm install` in the webapp folder, then `npm run dev`
 
 ---
 
-### Basic workflow for auto-generating comments as a reaction to comments and github api usage:
+### Basic workflow for auto-generating comments as a reaction to comments and posting comments thorugh API:
 
 <img width="862" alt="Screenshot 2023-09-20 at 11 22 17 PM" src="https://github.com/mfkimbell/github-actions-pipeline/assets/107063397/7f8883b8-d671-4fec-a165-30818e97cb80">
 
