@@ -4,10 +4,19 @@ on:
   #push being an event
   push:
     branches:
-      - main
+      - main #only main
+      - 'dev-*' #ex: dev-new dev-new2
+      - 'feat/**' #ex: feat/new feat/new/button (** alows for more /)
+    paths-ignore:
+      - '.github/workflows/*' 
+      #meaning that if the previous branches filter procs and
+      #a file in .github/workflows/ was not pushed/changed
+      #'paths' would do the opposite
   pull_request:
-    branches:
-      - main
+    #you can specify the "activity type" for the event trigger
+    types:
+      - opened
+      #will not run if a pull request is edited or closed
   #workflow_dispatch creates a button to run the workflow without making changes
   workflow_dispatch:
 

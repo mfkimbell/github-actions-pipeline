@@ -27,7 +27,7 @@ jobs:
         working-directory: ./ReactApp
         run: npm test
   #every job gets its own runner
-  deploy:
+  build:
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -41,12 +41,15 @@ jobs:
         working-directory: ./ReactApp
         run:
           npm ci
-      - name: Build project
+      - name: Build website
         working-directory: ./ReactApp
         run: npm run build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy
-        working-directory: ./ReactApp
-        run: echo "Deploying ..."
+        run: echo "This is where we would deploy..."
 
 
 
