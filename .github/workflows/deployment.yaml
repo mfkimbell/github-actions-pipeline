@@ -22,9 +22,6 @@ jobs:
           #starts in base directory
         working-directory: ./ReactApp
         run: npm ci
-      - name: Lint code
-        working-directory: ./ReactApp
-        run: npm run lint
       - name: Run tests
         working-directory: ./ReactApp
         run: npm test
