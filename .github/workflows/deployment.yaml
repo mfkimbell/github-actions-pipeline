@@ -1,6 +1,5 @@
 name: Deploy Project
-on:
-  push
+on: push
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -8,7 +7,7 @@ jobs:
       #it does not run on repository, its no server, it's a folder
       #that github's server/runner can access it
       - name: Get code
-        
+
         #action is a custom application that performs repeated tasks
         #as opposed to a commands
         uses: actions/checkout@v3
@@ -18,11 +17,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Install dependencies
-         #starts in base directory 
+      - name:
+          Install dependencies
+          #starts in base directory
         working-directory: ./ReactApp
-        run:
-          npm ci
+        run: npm ci
+      - name: Lint code
+        working-directory: ./ReactApp
+        run: npm run lint
       - name: Run tests
         working-directory: ./ReactApp
         run: npm test
@@ -39,8 +41,7 @@ jobs:
           node-version: 18
       - name: Install dependencies
         working-directory: ./ReactApp
-        run:
-          npm ci
+        run: npm ci
       - name: Build website
         working-directory: ./ReactApp
         run: npm run build
@@ -50,8 +51,3 @@ jobs:
     steps:
       - name: Deploy
         run: echo "This is where we would deploy..."
-
-
-
-          
-        
