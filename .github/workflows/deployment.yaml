@@ -48,18 +48,19 @@ jobs:
       - name: Build website
         working-directory: ./ReactApp
         run: npm run build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: ReactApp/dist
       - name: Publish JS filename
         id: publish
         #this echos the javascript file name of interest
         #the 'script-file' is the variable name of my STEPS value
         # >> $GITHUB_OUTPUT targets a special github file in the env
         #which writes our variable name + output to that file
-        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist-files
-          path: ReactApp/dist
+        run: find ReactApp/dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
+      
   deploy:
     needs: build
     runs-on: ubuntu-latest
