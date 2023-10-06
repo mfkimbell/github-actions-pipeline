@@ -50,8 +50,8 @@ jobs:
         with:
           name: dist-files
           path: | #this is how you do multiple files into an artifact
-            dist
-            package.json
+            ReactApp/dist
+            ReactApp/package.json
           
           
   deploy:
