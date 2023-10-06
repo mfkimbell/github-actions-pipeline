@@ -27,7 +27,8 @@ jobs:
       - name: Run tests
         working-directory: ./ReactApp
         run: npm test
-  #every job gets its own runner
+  #This build script has output files (artifacts)
+  #"dist-files"
   build:
     needs: test
     runs-on: ubuntu-latest
@@ -44,6 +45,15 @@ jobs:
       - name: Build website
         working-directory: ./ReactApp
         run: npm run build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: | #this is how you do multiple files into an artifact
+            dist
+            package.json
+          
+          
   deploy:
     needs: build
     runs-on: ubuntu-latest
