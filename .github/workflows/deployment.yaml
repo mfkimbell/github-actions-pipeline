@@ -32,6 +32,9 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+    #steps is a special value with info about steps
+      script-file: ${{ steps.publish.outputs.script-file }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -45,6 +48,13 @@ jobs:
       - name: Build website
         working-directory: ./ReactApp
         run: npm run build
+      - name: Publish JS filename
+        id: publish
+        #this echos the javascript file name of interest
+        #the 'script-file' is the variable name of my STEPS value
+        # >> $GITHUB_OUTPUT targets a special github file in the env
+        #which writes our variable name + output to that file
+        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -61,5 +71,8 @@ jobs:
         #all files available here now
       - name: Output contents
         run: ls
+      - name: Output filename
+        #all these keywords are in the github docs
+        run: echo "${{ needs.build.outputs.script-file}}"
       - name: Deploy
         run: echo "This is where we would deploy..."
