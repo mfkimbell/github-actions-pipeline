@@ -30,3 +30,8 @@ Run `npm install` in the webapp folder, then `npm run dev`
 
 ### Blocking changes unless there has at least 1 approval:
 <img width="842" alt="Screenshot 2023-09-28 at 2 48 13 PM" src="https://github.com/mfkimbell/github-actions-pipeline/assets/107063397/c8400e29-ec4e-4af2-90d9-19d5aa67f4f0">
+
+# Quick Tutorial
+
+<img width="797" alt="Screenshot 2023-10-05 at 9 52 22 PM" src="https://github.com/mfkimbell/github-actions-pipeline/assets/107063397/12186835-42cf-411c-9c6b-ae940e51198e">
+
