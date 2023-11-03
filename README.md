@@ -2,6 +2,16 @@
 
 The goal of this project was to gain a basic understanding of github actions. This project auto-generates comments on issues created in this repository. One of the comments is generated through a community action, the other is generated through the Github API. 
 
+---
+
+## Further related learning projects I've completed:
+
+### [Github Actions Docker Integration](https://github.com/mfkimbell/github-actions-docker)
+
+### [Github Actions Custom Actions](https://github.com/vuejs/vue)
+
+---
+
 ### How to run
 Run `npm install` in the webapp folder, then `npm run dev` 
 
